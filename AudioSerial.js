@@ -1,15 +1,15 @@
-function AudioSerial (buad, fs) {
+function AudioSerial (baud, fs) {
 /*TODO:
-    +Test for highest supported buad rate at various sample rates
+    +Test for highest supported baud rate at various sample rates
 */
     
   //PROPERTIES
     //Default Values
-    buad = buad || 9600;
+    baud = baud || 9600;
     fs = fs || 48000;
     
     //BUAD Rate
-    this.buad = buad;
+    this.baud = baud;
     
     //Audio Sample Rate, for best performance should be 48000
     this.fs= fs;
@@ -30,7 +30,7 @@ function AudioSerial (buad, fs) {
     //Sends characters one at a time over audio channel in serial communication format
     this.putString = function(string_out) {
         //Number of samples necessary to represent 12 bits for each character of the whole string
-        var bit_length = this.fs/this.buad;
+        var bit_length = this.fs/this.baud;
         
         //(12 bits/char)*(bit_length samples/bit)*(string_out.length chars/string) = (samples/string)
         var buffer_length = 12*bit_length*string_out.length;
